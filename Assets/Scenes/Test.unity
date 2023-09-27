@@ -396,10 +396,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1693518985542206743, guid: 0003da9de86d10bc1a742acb2539b6d3, type: 3}
-      propertyPath: maxZoom
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 3205985100800907320, guid: 0003da9de86d10bc1a742acb2539b6d3, type: 3}
       propertyPath: m_Name
       value: Player

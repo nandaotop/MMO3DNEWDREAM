@@ -8,11 +8,13 @@ public class Player : Entity
     [SerializeField] float rotSpeed = 2;
     float scroolAmount = 3;
     [SerializeField] float minZoon = 10, maxZoom = 120;
+    // ActionController controller;
+
     public override void Init()
     {
         base.Init();
         if (!photonView.IsMine) return;
-
+        // // controller = GetComponent<ActionController>();
         var f = Resources.Load<CameraFollow>(StaticStrings.follow);
         follow = Instantiate(f, transform.position, transform.rotation);
         follow.Init(transform);
@@ -20,6 +22,9 @@ public class Player : Entity
 
     public override void Tick()
     {
+        UseCamera();
+        if (!CamMove()) return;
+
         float x = Input.GetAxisRaw(StaticStrings.horizontal);
         float y = Input.GetAxisRaw(StaticStrings.vertical);
         Vector3 moveInput = new Vector3(x, 0f, y).normalized;
@@ -39,7 +44,8 @@ public class Player : Entity
         }
 
         sync.Move(x, y);
-        UseCamera();
+        
+        // controller.Tick(follow.transform);
     }
 
     void UseCamera()
@@ -55,5 +61,13 @@ public class Player : Entity
             val = Mathf.Clamp(val, minZoon, maxZoom);
             follow.cam.fieldOfView = val;
         }
+    }
+
+    bool CamMove()
+    {
+        if(isDeath) 
+            return false;
+
+        return true;
     }
 }

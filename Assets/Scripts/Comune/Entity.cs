@@ -10,6 +10,7 @@ public abstract class Entity : MonoBehaviourPun
     public float moveSpeed = 5;
     public float moveMultipler = 100;
     public float rotationSpeed = 10f;
+    public bool isDeath;
 
     void Start()
     {
