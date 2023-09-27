@@ -35,13 +35,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinLobby();
     }
 
-    public override void OnJoinedLobby()
-    {
-        RoomOptions options = new RoomOptions();
-        options.MaxPlayers = 20;
-        PhotonNetwork.JoinOrCreateRoom(world, options, TypedLobby.Default);
-    }
-
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.Log("Disconnected");
@@ -49,8 +42,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        startButton.SetActive(false);
         PhotonNetwork.LoadLevel(currentLevel);
+        RoomOptions options = new RoomOptions();
+        options.MaxPlayers = 20;
+        PhotonNetwork.JoinOrCreateRoom(world, options, TypedLobby.Default);
+        startButton.SetActive(false);
         StartCoroutine(JoinRoomCo());
     }
 
