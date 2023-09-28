@@ -5,9 +5,12 @@ using UnityEngine;
 public class Player : Entity
 {
     CameraFollow follow;
-    [SerializeField] float rotSpeed = 2;
-    float scroolAmount = 3;
-    [SerializeField] float minZoon = 10, maxZoom = 120;
+    [SerializeField]
+    float rotSpeed = 2;
+    [SerializeField]
+    float scrollAmount = 3;
+    [SerializeField]
+    float minZoom = 10, maxZoom = 120;
     ActionController controller;
 
     public override void Init()
@@ -23,39 +26,36 @@ public class Player : Entity
     public override void Tick()
     {
         UseCamera();
-        if (!CamMove()) return;
+        if (!CanMove()) return;
 
-        float x = Input.GetAxisRaw(StaticStrings.horizontal);
-        float y = Input.GetAxisRaw(StaticStrings.vertical);
-        Vector3 moveInput = new Vector3(x, 0f, y).normalized;
-        moveInput *= Time.deltaTime * moveMultipler * moveSpeed;
-        moveInput.y = rb.velocity.y;
-        rb.velocity = moveInput;
-
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+        Vector3 move = (transform.right * x) + (transform.forward * y);
+        move *= Time.deltaTime * moveMultipler * moveSpeed;
+        move.y = rb.velocity.y;
+        rb.velocity = move;
         sync.Move(x, y);
-        
-        controller.Tick(follow.transform, moveInput);
+        controller.Tick(follow.transform);
     }
 
     void UseCamera()
     {
-        float x = Input.GetAxisRaw(StaticStrings.mouseX);
-        float scrool = Input.GetAxisRaw(StaticStrings.Scrool);
+        float x = Input.GetAxisRaw("Mouse X");
+        float scroll = Input.GetAxisRaw("Mouse ScrollWheel");
         Vector3 rot = follow.transform.rotation.eulerAngles;
         follow.transform.rotation = Quaternion.Euler(rot.x, rot.y + x * rotSpeed, rot.z);
-        if (scrool != 0)
+        if (scroll != 0)
         {
-            float val = scroolAmount * scrool;
+            float val = scrollAmount * scroll;
             val += follow.cam.fieldOfView;
-            val = Mathf.Clamp(val, minZoon, maxZoom);
+            val = Mathf.Clamp(val, minZoom, maxZoom);
             follow.cam.fieldOfView = val;
         }
     }
 
-    bool CamMove()
+    bool CanMove()
     {
-        if(isDeath) 
-            return false;
+        if (isDeath) return false;
 
         return true;
     }

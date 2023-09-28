@@ -6,9 +6,10 @@ public class AnimatorSync : MonoBehaviour
 {
     Animator anim;
 
+    // Update is called once per frame
     public void Init()
     {
-        anim = GetComponent<Animator>();    
+        anim = GetComponent<Animator>();
     }
 
     public void Move(float x, float y)

@@ -7,11 +7,9 @@ public abstract class Entity : MonoBehaviourPun
 {
     public AnimatorSync sync;
     public Rigidbody rb;
-    public float moveSpeed = 5;
-    public float moveMultipler = 100;
-    public float rotationSpeed = 10f;
+    public float moveSpeed = 3;
+    public float moveMultipler = 1;
     public bool isDeath;
-
     void Start()
     {
         Init();
@@ -20,7 +18,6 @@ public abstract class Entity : MonoBehaviourPun
     void Update()
     {
         if (photonView.IsMine == false) return;
-
         Tick();
     }
 
@@ -30,7 +27,7 @@ public abstract class Entity : MonoBehaviourPun
         sync.Init();
         rb = GetComponent<Rigidbody>();
     }
-
+    
     public virtual void Tick()
     {
 
