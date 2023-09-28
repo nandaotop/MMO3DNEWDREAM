@@ -7,17 +7,18 @@ using Photon.Realtime;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public static NetworkManager instance;
-    [SerializeField] GameObject connectPanel = null;
-    [SerializeField] GameObject startButton = null;
-    [SerializeField] GameObject playerPrefab = null;
+    [SerializeField]
+    GameObject connectPanel = null;
     const string world = "World";
     int currentLevel = 1;
+    [SerializeField]
+    GameObject startButton = null;
+    [SerializeField]
+    GameObject player = null;
 
-    private void Awake()
-    {
-        if (instance != null && instance != this)
+    private void Awake() {
+        if (instance != null)
         {
-            // If an instance of NetworkManager already exists, destroy this one.
             Destroy(gameObject);
         }
         else
@@ -29,32 +30,33 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        // Connect to the Photon server.
         PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
     {
-        // When connected to the Photon master server, join the lobby.
         connectPanel.SetActive(false);
         PhotonNetwork.JoinLobby();
     }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-        Debug.Log("Disconnected: " + cause.ToString());
+        Debug.Log("Disconnected");
     }
 
     public void StartGame()
     {
-        // Load the game level and create or join the room.
         PhotonNetwork.LoadLevel(currentLevel);
+        RoomOptions options = new RoomOptions();
+        options.MaxPlayers = 20; // TODO: max
+        PhotonNetwork.JoinOrCreateRoom(world, options, TypedLobby.Default);
+        startButton.SetActive(false);
+        StartCoroutine(JoinRoomCo());
     }
 
-    public override void OnJoinedRoom()
+    IEnumerator JoinRoomCo()
     {
-        // Instantiate the player prefab when joined to the room.
-        PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
-        startButton.SetActive(false);
+        yield return new WaitForSeconds(1);
+        PhotonNetwork.Instantiate(player.name, Vector3.zero, Quaternion.identity);
     }
 }
