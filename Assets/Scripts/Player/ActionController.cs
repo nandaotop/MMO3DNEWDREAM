@@ -15,22 +15,21 @@ public class ActionController : MonoBehaviour
     [SerializeField] float attackDealy = 2;
     public AnimatorSync sync { get; set; }
 
-    public void Tick(Transform follow, float x, float y)
+    public void Tick(Transform follow,float x,float y)
     {
         float delta = Time.deltaTime;
-        if (autoMove == false)
+        if(autoMove==false)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, follow.rotation, rotSpeed * delta);
         }
         RightClick();
-        if (x != 0 || y != 0)
+        if(x!=0|| y!=0)
         {
             autoMove = false;
         }
-
-        if (autoMove)
+        if(autoMove)
         {
-            if (enemyTarget == null)
+            if(enemyTarget==null)
             {
                 autoMove = false;
                 return;
@@ -38,18 +37,18 @@ public class ActionController : MonoBehaviour
             Vector3 enemyPos = enemyTarget.transform.position;
             float dist = Vector3.Distance(transform.position, enemyPos);
             float velocity = 0;
-            if (dist > attackRange)
+            if(dist>attackRange)
             {
                 velocity = 1;
-                transform.position = Vector3.MoveTowards(transform.position, enemyPos, 
-                    automoveSpeed * delta);
+                transform.position = Vector3.MoveTowards(transform.position, enemyPos,
+                automoveSpeed * delta);
             }
             else
             {
                 AutoAttack(delta);
             }
             sync.Move(0, velocity);
-            Vector3 look = enemyTarget.transform.position - transform.position;
+            Vector3 look = enemyPos- transform.position;
             look.y = 0;
             Quaternion rot = Quaternion.LookRotation(look);
             transform.rotation = Quaternion.Slerp(transform.rotation, rot, automoveSpeed * delta);
