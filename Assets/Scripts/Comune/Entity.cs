@@ -12,7 +12,7 @@ public abstract class Entity : MonoBehaviourPun
     public bool isDeath;
     public Stats stats = new Stats();
     [SerializeField] protected int hp = 10;
-    PhotonView view;
+    protected PhotonView view;
     public System.Action OnDeathEvent;
 
     void Start()

@@ -410,7 +410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &137151315
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1771,7 +1771,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 600238069}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1458176692}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Respawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &600238069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4205,63 +4217,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1142728807}
   m_CullTransparentMesh: 1
---- !u!1001 &1143953943
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 284611107796073162, guid: ef5ec75fa22dee7cc92ce9fb4713bef5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0051567554
-      objectReference: {fileID: 0}
-    - target: {fileID: 284611107796073162, guid: ef5ec75fa22dee7cc92ce9fb4713bef5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 284611107796073162, guid: ef5ec75fa22dee7cc92ce9fb4713bef5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.13571426
-      objectReference: {fileID: 0}
-    - target: {fileID: 284611107796073162, guid: ef5ec75fa22dee7cc92ce9fb4713bef5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 284611107796073162, guid: ef5ec75fa22dee7cc92ce9fb4713bef5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284611107796073162, guid: ef5ec75fa22dee7cc92ce9fb4713bef5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284611107796073162, guid: ef5ec75fa22dee7cc92ce9fb4713bef5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284611107796073162, guid: ef5ec75fa22dee7cc92ce9fb4713bef5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284611107796073162, guid: ef5ec75fa22dee7cc92ce9fb4713bef5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284611107796073162, guid: ef5ec75fa22dee7cc92ce9fb4713bef5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8873511560946727034, guid: ef5ec75fa22dee7cc92ce9fb4713bef5, type: 3}
-      propertyPath: m_Name
-      value: CameraFollow
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ef5ec75fa22dee7cc92ce9fb4713bef5, type: 3}
 --- !u!1 &1194712691
 GameObject:
   m_ObjectHideFlags: 0
@@ -5655,6 +5610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6cf94861f68b292a09a58d3a7f446e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathPanel: {fileID: 137151314}
 --- !u!114 &1458176693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10739,7 +10695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5078871736405997998, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6645918942132447065, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11730,4 +11686,3 @@ SceneRoots:
   - {fileID: 901309838}
   - {fileID: 38563030}
   - {fileID: 1458176696}
-  - {fileID: 1143953943}

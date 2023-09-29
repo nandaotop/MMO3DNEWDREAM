@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WorldManager : MonoBehaviour
 {
-    [SerializeField] Transform respawnPoint = null;
+    [SerializeField] public Transform respawnPoint = null;
     public List<Transform> playerList = new List<Transform>();
     [SerializeField] Vector3 deathZone = new Vector3(0, -10, 0);
     public static WorldManager instance;

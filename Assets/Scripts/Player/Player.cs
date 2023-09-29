@@ -24,6 +24,11 @@ public class Player : Entity
         follow = Instantiate(f, transform.position, transform.rotation);
         follow.Init(transform);
         WorldManager.instance.playerList.Add(transform);
+        UIManager.instance.player = this;
+        OnDeathEvent = () => 
+        {
+            UIManager.instance.deathPanel.SetActive(true);
+        };
     }
 
     public override void Tick()
@@ -61,5 +66,18 @@ public class Player : Entity
         if (isDeath) return false;
 
         return true;
+    }
+
+    public void Respawn()
+    {
+        transform.position = WorldManager.instance.respawnPoint.position;
+        isDeath = false;
+        hp = stats.maxHp;
+        sync.IsDead(false);
+        if (Photon.Pun.PhotonNetwork.IsConnected)
+        {
+            view.RPC("SyncronizeStat", Photon.Pun.RpcTarget.All, hp);
+
+        }
     }
 }
