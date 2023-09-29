@@ -11,13 +11,16 @@ public class ActionController : MonoBehaviour
     [SerializeField] float attackRange = 3;
     [SerializeField] float automoveSpeed = 2;
     Enemy enemyTarget;
+    Timer attackTimer = new Timer();
+    [SerializeField] float attackDealy = 2;
     public AnimatorSync sync { get; set; }
 
     public void Tick(Transform follow, float x, float y)
     {
+        float delta = Time.deltaTime;
         if (autoMove == false)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, follow.rotation, rotSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, follow.rotation, rotSpeed * delta);
         }
         RightClick();
         if (x != 0 || y != 0)
@@ -39,23 +42,27 @@ public class ActionController : MonoBehaviour
             {
                 velocity = 1;
                 transform.position = Vector3.MoveTowards(transform.position, enemyPos, 
-                    automoveSpeed * Time.deltaTime);
+                    automoveSpeed * delta);
             }
             else
             {
-                AutoAttack();
+                AutoAttack(delta);
             }
             sync.Move(0, velocity);
             Vector3 look = enemyTarget.transform.position - transform.position;
             look.y = 0;
             Quaternion rot = Quaternion.LookRotation(look);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rot, automoveSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, automoveSpeed * delta);
         }
     }
 
-    private void AutoAttack()
+    private void AutoAttack(float delta)
     {
-        
+        if (!attackTimer.timerActive(delta))
+        {
+            attackTimer.StartTimer(attackDealy);
+            sync.PlayAnimation("atk");
+        }
     }
 
     void RightClick()

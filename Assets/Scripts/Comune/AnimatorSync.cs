@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class AnimatorSync : MonoBehaviour
+public class AnimatorSync : MonoBehaviourPun
 {
     Animator anim;
 
@@ -22,4 +23,17 @@ public class AnimatorSync : MonoBehaviour
     {
         anim.SetBool(StaticStrings.move, val);
     }
+    
+    public void PlayAnimation(string animName)
+    {
+        if (PhotonNetwork.IsConnected)
+        {
+
+        }
+        else
+        {
+            anim.Play(animName);
+        }
+    }
+
 }
