@@ -213,6 +213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 2
+  attackRange: 3
+  automoveSpeed: 2
+  attackDealy: 2
 --- !u!1001 &6492510351991731655
 PrefabInstance:
   m_ObjectHideFlags: 0
