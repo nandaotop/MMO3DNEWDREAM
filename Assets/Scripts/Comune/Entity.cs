@@ -10,6 +10,9 @@ public abstract class Entity : MonoBehaviourPun
     public float moveSpeed = 3;
     public float moveMultipler = 1;
     public bool isDeath;
+    [SerializeField] int hp = 10;
+    PhotonView view;
+
     void Start()
     {
         Init();
@@ -26,10 +29,55 @@ public abstract class Entity : MonoBehaviourPun
         sync = GetComponentInChildren<AnimatorSync>();
         sync.Init();
         rb = GetComponent<Rigidbody>();
+        view = PhotonView.Get(this);
     }
     
     public virtual void Tick()
     {
 
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        if (!PhotonNetwork.IsConnected)
+        {
+            DebugDamage(dmg);
+        }
+        else
+        {
+            if (view == null) view = PhotonView.Get(this);
+            view.RPC("DealDamage", RpcTarget.MasterClient, dmg);
+        }
+    }
+
+    void DebugDamage(int dmg)
+    {
+        hp -= dmg;
+        if (hp <= 0)
+        {
+            hp = 0;
+            isDeath = true;
+            sync.IsDead(true);
+        }
+    }
+
+    [PunRPC]
+    public void DealDamage(int dmg)
+    {
+        hp -= dmg;
+        if (hp <= 0)
+        {
+            hp = 0;
+            isDeath = true;
+            sync.IsDead(true);
+        }
+        view.RPC("SyncronizeStat", RpcTarget.All, hp);
+    }
+
+    [PunRPC]
+    public void SyncronizeStat(int hp)
+    {
+        this.hp = hp;
+        
     }
 }
