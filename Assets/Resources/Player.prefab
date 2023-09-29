@@ -196,6 +196,12 @@ MonoBehaviour:
   moveSpeed: 3
   moveMultipler: 100
   isDeath: 0
+  stats:
+    Level: 1
+    maxHp: 1
+    atk: 1
+    def: 1
+    mana: 1
   hp: 10
   rotSpeed: 5
   scrollAmount: 10

@@ -10,8 +10,10 @@ public abstract class Entity : MonoBehaviourPun
     public float moveSpeed = 3;
     public float moveMultipler = 1;
     public bool isDeath;
-    [SerializeField] int hp = 10;
+    public Stats stats = new Stats();
+    [SerializeField] protected int hp = 10;
     PhotonView view;
+    public System.Action OnDeathEvent;
 
     void Start()
     {
@@ -58,6 +60,10 @@ public abstract class Entity : MonoBehaviourPun
             hp = 0;
             isDeath = true;
             sync.IsDead(true);
+            if (OnDeathEvent != null)
+            {
+                OnDeathEvent.Invoke();
+            }
         }
     }
 
