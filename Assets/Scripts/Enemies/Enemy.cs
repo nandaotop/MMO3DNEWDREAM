@@ -13,6 +13,7 @@ public class Enemy : Entity
     Vector3 destination;
     [SerializeField] float patrolDist = 1;
     float wait = 2;
+    [SerializeField] bool staticEnemy = false;
 
     public override void Init()
     {
@@ -26,6 +27,7 @@ public class Enemy : Entity
     public override void Tick()
     {
         delta = Time.deltaTime;
+        if (staticEnemy) return; //for debug
 
         switch (estate)
         {
