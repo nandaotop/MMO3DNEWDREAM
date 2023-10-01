@@ -2674,6 +2674,7 @@ MonoBehaviour:
   actionRadius: 5
   attackRange: 2
   attackSpeed: 2
+  maxDistance: 5
 --- !u!114 &901309833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10744,6 +10745,14 @@ PrefabInstance:
     - target: {fileID: 8190202437448735085, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
       propertyPath: hp
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190202437448735085, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
+      propertyPath: stats.maxHp
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190202437448735085, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
+      propertyPath: scrollAmount
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8190202437448735085, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
       propertyPath: moveMultiplier
