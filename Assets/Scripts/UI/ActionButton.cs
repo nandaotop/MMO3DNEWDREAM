@@ -41,17 +41,17 @@ public class ActionButton : MonoBehaviour
 
     string changeAlphaText(string buttonText)
     {
-        if (buttonText == "Keypad1")
+        if (buttonText == "Alpha1")
             return "1";
-        if (buttonText == "Keypad2")
+        if (buttonText == "Alpha2")
             return "2";
-        if (buttonText == "Keypad3")
+        if (buttonText == "Alpha3")
             return "3";
-        if (buttonText == "Keypad4")
+        if (buttonText == "Alpha4")
             return "4";
-        if (buttonText == "Keypad5")
+        if (buttonText == "Alpha5")
             return "5";
-        if (buttonText == "Keypad6")
+        if (buttonText == "Alpha6")
             return "6";
 
         return buttonText;

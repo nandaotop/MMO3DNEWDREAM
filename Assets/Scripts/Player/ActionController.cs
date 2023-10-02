@@ -22,12 +22,12 @@ public class ActionController : MonoBehaviour
         new ActionClass(){ key = KeyCode.F5 },
         new ActionClass(){ key = KeyCode.F6 },
 
-        new ActionClass(){ key = KeyCode.Keypad1 },
-        new ActionClass(){ key = KeyCode.Keypad2 },
-        new ActionClass(){ key = KeyCode.Keypad3 },
-        new ActionClass(){ key = KeyCode.Keypad4 },
-        new ActionClass(){ key = KeyCode.Keypad5 },
-        new ActionClass(){ key = KeyCode.Keypad6 }
+        new ActionClass(){ key = KeyCode.Alpha1 },
+        new ActionClass(){ key = KeyCode.Alpha2 },
+        new ActionClass(){ key = KeyCode.Alpha3 },
+        new ActionClass(){ key = KeyCode.Alpha4 },
+        new ActionClass(){ key = KeyCode.Alpha5 },
+        new ActionClass(){ key = KeyCode.Alpha6 }
     };
 
     public AnimatorSync sync { get; set; }

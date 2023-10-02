@@ -10969,13 +10969,53 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7177738524306889622, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
+      propertyPath: actions.Array.data[6].key
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177738524306889622, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
+      propertyPath: actions.Array.data[7].key
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177738524306889622, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
+      propertyPath: actions.Array.data[8].key
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177738524306889622, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
+      propertyPath: actions.Array.data[9].key
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177738524306889622, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
+      propertyPath: actions.Array.data[10].key
+      value: 53
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177738524306889622, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
+      propertyPath: actions.Array.data[11].key
+      value: 54
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177738524306889622, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
       propertyPath: actions.Array.data[0].skill
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: bb388eb59edc1fba3894e0c31866dd94, type: 2}
     - target: {fileID: 7177738524306889622, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
       propertyPath: actions.Array.data[6].skill
       value: 
       objectReference: {fileID: 11400000, guid: 92f86c415c5c8c50aa7631a7c0e194bf, type: 2}
+    - target: {fileID: 7177738524306889622, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
+      propertyPath: actions.Array.data[7].skill
+      value: 
+      objectReference: {fileID: 11400000, guid: bb388eb59edc1fba3894e0c31866dd94, type: 2}
+    - target: {fileID: 7177738524306889622, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
+      propertyPath: actions.Array.data[0].button
+      value: 
+      objectReference: {fileID: 493427931}
+    - target: {fileID: 7177738524306889622, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
+      propertyPath: actions.Array.data[6].button
+      value: 
+      objectReference: {fileID: 35150231}
+    - target: {fileID: 7177738524306889622, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
+      propertyPath: actions.Array.data[7].button
+      value: 
+      objectReference: {fileID: 1762286032}
     - target: {fileID: 7698212084111917008, guid: 19fed892623c9e6b4a3e1c59961b22e7, type: 3}
       propertyPath: sceneViewId
       value: 2
