@@ -13,7 +13,30 @@ public class ActionController : MonoBehaviour
     Enemy enemyTarget;
     Timer attackTimer = new Timer();
     [SerializeField] float attackDealy = 2;
+    public List<ActionClass> actions = new List<ActionClass>()
+    {
+        new ActionClass(){ key = KeyCode.F1 },
+        new ActionClass(){ key = KeyCode.F2 },
+        new ActionClass(){ key = KeyCode.F3 },
+        new ActionClass(){ key = KeyCode.F4 },
+        new ActionClass(){ key = KeyCode.F5 },
+        new ActionClass(){ key = KeyCode.F6 },
+
+        new ActionClass(){ key = KeyCode.Keypad1 },
+        new ActionClass(){ key = KeyCode.Keypad2 },
+        new ActionClass(){ key = KeyCode.Keypad3 },
+        new ActionClass(){ key = KeyCode.Keypad4 },
+        new ActionClass(){ key = KeyCode.Keypad5 },
+        new ActionClass(){ key = KeyCode.Keypad6 }
+    };
+
     public AnimatorSync sync { get; set; }
+    bool inAction = false;
+
+    public void Init()
+    {
+        UIManager.instance.SetActions(this);
+    }
 
     public void Tick(Transform follow,float x,float y)
     {
@@ -52,6 +75,14 @@ public class ActionController : MonoBehaviour
             look.y = 0;
             Quaternion rot = Quaternion.LookRotation(look);
             transform.rotation = Quaternion.Slerp(transform.rotation, rot, automoveSpeed * delta);
+        }
+        foreach (var item in actions)
+        {
+            if (Input.GetKeyDown(item.key))
+            {
+                PressButton(item.key, item);
+                break;
+            }
         }
     }
 
@@ -94,4 +125,36 @@ public class ActionController : MonoBehaviour
             }
         }
     }
+
+    public void PressButton(KeyCode code, ActionClass action = null)
+    {
+        ActionClass current = action;
+        if (action == null)
+        {
+            current = GetAction(code);
+        }
+        Skill skill = current.skill;
+        if (skill == null) return;
+        inAction = true;
+        sync.PlayAnimation(current.skill.animName.ToString());
+    }
+
+    ActionClass GetAction(KeyCode code)
+    {
+        foreach (var item in actions)
+        {
+            if (item.key == code)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
+}
+
+[System.Serializable]
+public class ActionClass
+{
+    public KeyCode key;
+    public Skill skill;
 }
