@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
             if (i < controller.actions.Count)
             {
                 buttons[i].SetUpButton(controller, controller.actions[i]);
+                controller.actions[i].button = buttons[i];
             }
         }
     }
@@ -29,7 +30,7 @@ public class UIManager : MonoBehaviour
     {
         foreach (var item in buttons)
         {
-            item.ManaCheck();
+            item.FadeCheck();
         }
     }
 

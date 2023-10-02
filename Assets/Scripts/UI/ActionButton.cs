@@ -10,6 +10,11 @@ public class ActionButton : MonoBehaviour
     [SerializeField] Text buttontext = null;
     ActionClass action;
     ActionController controller;
+    float countDown = 1;    
+    public bool Charging()
+    {
+        return (countdownImage.fillAmount > 0);
+    }
 
     public void SetUpButton(ActionController controller, ActionClass action)
     {
@@ -20,12 +25,18 @@ public class ActionButton : MonoBehaviour
         if (skill != null)
         {
             icon.sprite = skill.sprite;
+            countDown = skill.countDown;
         }
     }
 
     public void Pressed()
     {
         controller.PressButton(action);
+    }
+
+    public void SetCountDown()
+    {
+        countdownImage.fillAmount = 1;
     }
 
     string changeAlphaText(string buttonText)
@@ -46,9 +57,15 @@ public class ActionButton : MonoBehaviour
         return buttonText;
     }
 
-    public void ManaCheck()
+    public void FadeCheck()
     {
         if (action.skill == null) return;
+
+        if (countdownImage.fillAmount > 0)
+        {
+            countdownImage.fillAmount -= 1 / countDown * Time.deltaTime;
+        }
+
         if (action.skill.cost <= controller.mana)
         {
             onOffImage.enabled = false;
