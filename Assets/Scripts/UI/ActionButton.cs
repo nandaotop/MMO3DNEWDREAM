@@ -8,19 +8,24 @@ public class ActionButton : MonoBehaviour
     [SerializeField] Image icon = null;
     [SerializeField] Image countdownImage = null, onOffImage = null;
     [SerializeField] Text buttontext = null;
-    KeyCode code = KeyCode.None;
+    ActionClass action;
     ActionController controller;
 
-    public void SetUpButton(ActionController controller, KeyCode key)
+    public void SetUpButton(ActionController controller, ActionClass action)
     {
-        this.code = key;
+        this.action = action;
         this.controller = controller;
-        buttontext.text = changeAlphaText(key.ToString());
+        buttontext.text = changeAlphaText(this.action.key.ToString());
+        var skill = action.skill;
+        if (skill != null)
+        {
+            icon.sprite = skill.sprite;
+        }
     }
 
     public void Pressed()
     {
-        controller.PressButton(code);
+        controller.PressButton(action);
     }
 
     string changeAlphaText(string buttonText)
@@ -39,5 +44,18 @@ public class ActionButton : MonoBehaviour
             return "6";
 
         return buttonText;
+    }
+
+    public void ManaCheck()
+    {
+        if (action.skill == null) return;
+        if (action.skill.cost <= controller.mana)
+        {
+            onOffImage.enabled = false;
+        }
+        else
+        {
+            onOffImage.enabled = true;
+        }
     }
 }

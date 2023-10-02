@@ -10,4 +10,5 @@ public class Stats
     public int atk = 1;
     public int def = 1;
     public int mana = 1;
+    public int manaXsecond = 5;
 }

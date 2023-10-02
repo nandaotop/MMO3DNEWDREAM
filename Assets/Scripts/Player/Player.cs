@@ -12,7 +12,8 @@ public class Player : Entity
     [SerializeField]
     float minZoom = 10, maxZoom = 120;
     ActionController controller;
-
+    const float second = 1;
+    float manaCounter = 1;
     public override void Init()
     {
         base.Init();
@@ -20,7 +21,7 @@ public class Player : Entity
 
         controller = GetComponent<ActionController>();
         controller.sync = sync;
-        controller.Init();
+        controller.Init(this);
         var f = Resources.Load<CameraFollow>(StaticStrings.follow);
         follow = Instantiate(f, transform.position, transform.rotation);
         follow.Init(transform);
@@ -35,6 +36,17 @@ public class Player : Entity
     public override void Tick()
     {
         UseCamera();
+        if (controller.mana < stats.mana)
+        {
+            manaCounter -= Time.deltaTime;
+            if (manaCounter <= 0)
+            {
+                manaCounter = second;
+                controller.mana += stats.manaXsecond;
+                if (controller.mana > stats.mana)
+                    controller.mana = stats.mana;
+            }
+        }
         if (!CanMove()) return;
 
         float x = Input.GetAxisRaw("Horizontal");

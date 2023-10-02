@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: Sample
   m_EditorClassIdentifier: 
   animName: 0
+  sprite: {fileID: 21300000, guid: 63505779c3342bf44a7d398d4d3f5c88, type: 3}
+  cost: 45
+  countDown: 3
+  activationTime: 5
+  counter: 5
